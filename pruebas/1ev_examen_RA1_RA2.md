@@ -138,16 +138,27 @@ if (A == B) {
 #### (2 p) Galletas de la suerte. Escribe un programa en PHP que escriba por pantalla un mensaje aleatorio de entre 5 recogidos en constantes. 
 
 ```php
-define("MSG1", "Hoy será un gran día.");
-define("MSG2", "Sonríe, algo bueno llegará.");
-define("MSG3", "Tu esfuerzo dará fruto.");
-define("MSG4", "Aprende algo nuevo hoy.");
-define("MSG5", "Cuidado con las prisas.");
+<?php
+    
+    // V1: con un número entero aleatorio entre 1 y 5
+    
+    // Definición de constantes
 
-$mensajes = [MSG1, MSG2, MSG3, MSG4, MSG5];
-$indice = array_rand($mensajes);
-echo $mensajes[$indice] . "\n";
-```
+    define("MSG1", "Hoy será un gran día.");
+    define("MSG2", "Sonríe, algo bueno llegará.");
+    define("MSG3", "Tu esfuerzo dará fruto.");
+    define("MSG4", "Aprende algo nuevo hoy.");
+    define("MSG5", "Cuidado con las prisas.");
+
+    // Declaración de variables
+
+    $mensajes = [MSG1, MSG2, MSG3, MSG4, MSG5];
+    $indice = random_int(0, 4);
+
+    // Salida por pantalla
+
+    echo $mensajes[$indice] . "\n";
+?>```
 
 #### (2 p) En PHP, así como en otros lenguajes de programación, el operador % obtiene el resto de la división entera. Así, el siguiente código: 
 
