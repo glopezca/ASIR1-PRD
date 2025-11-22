@@ -158,7 +158,8 @@ if (A == B) {
     // Salida por pantalla
 
     echo $mensajes[$indice] . "\n";
-?>```
+?>
+```
 
 #### (2 p) En PHP, así como en otros lenguajes de programación, el operador % obtiene el resto de la división entera. Así, el siguiente código: 
 
