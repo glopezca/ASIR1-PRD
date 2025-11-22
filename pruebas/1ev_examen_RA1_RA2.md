@@ -230,8 +230,8 @@ $max_saltos = [ “Ana” => 87, “Luis” => 23, “Jon” => 112, “Martina�
 ```mermaid
 flowchart TB
     A(["Inicio"]) --> B["Inicializar array $max_saltos"]
-    B --> C["Asignar $max = 0"]
-    C --> D["Asignar $max_nombre ="]
+    B --> C["Inicializar $max = 0"]
+    C --> D["Inicializar $max_nombre"]
     D --> E{"¿Quedan elementos en $max_saltos?"}
     E -- Sí --> F["Siguiente iteración $num/$nombre"]
     F --> G{"¿$num > $max?"}
