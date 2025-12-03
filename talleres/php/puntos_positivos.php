@@ -16,7 +16,7 @@
         "Luis" => false
     );
 
-    // Bucle de actualizadión de notas
+    // Bucle de actualización de notas
     foreach ($notas_alumnos as $alumno => $nota) {
         echo "Alumno: $alumno, Nota: $nota\n";
         if ($entregado_practica[$alumno]) {
