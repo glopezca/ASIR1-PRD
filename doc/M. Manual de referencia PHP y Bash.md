@@ -1,16 +1,45 @@
-# Comparativa completa y extendida entre PHP y Bash
+# Manual de referencia de PHP y Bash
 
-**Documento ampliado y profundamente desarrollado para alumnado de CFGS ASIR**, con explicaciones pedagógicas, ejemplos exhaustivos y código resaltado.
+**Comparativa extensa, con explicaciones pedagógicas, ejemplos exhaustivos y código resaltado.**
 
 ---
 
-# 1. Naturaleza de los lenguajes
+# 😀 1. Razón de ser
+
+## **Bash**
+- Shell de Unix diseñado para interactuar con el sistema operativo.
+- Automatiza tareas, ejecuta comandos y gestiona archivos y procesos.
+- Ventajas: simple y directo  (ideal para automatización).
+
+
+## **PHP**
+- Lenguaje creado para generar páginas web dinámicas.
+- Enfocado en lógica de backend y generación de contenido desde el servidor.
+- Ventajas: amplio y robusto (orientado a aplicaciones).  
+
+---
+
+# 🚀 2. Aplicación
+
+## **Bash**
+- Scripts de administración de sistemas.
+- Automatización: backups, despliegues, cron, monitoreo.
+- Procesamiento de archivos usando utilidades del sistema.
+
+## **PHP**
+- Desarrollo web backend.
+- Generación dinámica de HTML.
+- Conexión con bases de datos.
+- Frameworks: Laravel, Symfony.
+- CMS: WordPress, Joomla, Moodle.
+
+# 🔥 3. Naturaleza de los lenguajes
 ## PHP
 PHP es un **lenguaje de programación de propósito general**, especialmente usado en entornos web. Dispone de:
 - Tipado dinámico
 - Soporte para orientación a objetos
 - Librerías extensas
-- Ejecución en servidores web y CLI
+- Diseñado para su ejecución en servidores web (backend), se puede ejecutar también en la CLI
 
 ## Bash
 Bash es un **intérprete de comandos** orientado a automatización en Linux/Unix:
@@ -20,29 +49,346 @@ Bash es un **intérprete de comandos** orientado a automatización en Linux/Unix
 
 ---
 
-# 2. Peculiaridades sintácticas comparadas
+# 🔧 4. Peculiaridades sintácticas comparadas
 | Característica | PHP | Bash |
 |--------------|------|------|
 | `;` | Obligatorio | Opcional |
 | Bloques | `{}` | `then/fi`, `do/done` |
 | Variables | `$var` | `var="valor"` |
 | Arrays | Complejos | Simples/Asociativos |
-| Comentarios | `// # /* */` | `#` |
+| Comentarios | `//`, `#` y `/* */` | `#` |
 
 ---
 
-# 3. Comentarios
-## PHP
+## 🧩 1. Estructura general de un script
+
+| Lenguaje | Ejemplo | Características |
+|---------|---------|------------------|
+| **Bash** | 
+```bash
+#!/bin/bash
+echo "Hola"
+```
+ | No requiere llaves, se ejecuta línea a línea. |
+| **PHP** | 
 ```php
-// comentario
-# comentario
-/* bloque */
+<?php
+echo "Hola";
+?>
+```
+ | Usa etiquetas `<?php ?>` y punto y coma obligatorio. |
+
+---
+
+## 🧩 2. Comentarios
+### PHP
+```php
+// comentario de línea (más habitual)
+# comentario de línea (menos habitual)
+/* comentario
+de
+bloque */
 ```
 
-## Bash
+### Bash
 ```bash
 # comentario de línea
 ```
+
+## 🔢 3. Declaración y asignación de variables
+
+| Bash | PHP |
+|------|-----|
+| `nombre="Juan"`  | `$nombre = "Juan";` |
+| No usa tipo ningún símbolo especial. | El *\$* identifica a la variable. |
+
+---
+
+## 🔄 4. Condicionales
+
+### Bash
+```bash
+if [ $x -gt 10 ]; then
+    echo "Mayor"
+else
+    echo "Menor"
+fi
+```
+
+### PHP
+```php
+if ($x > 10) {
+    echo "Mayor";
+} else {
+    echo "Menor";
+}
+```
+
+**Diferencias clave:**  
+- Bash usa `then` y termina con `fi`.  
+- PHP usa paréntesis y llaves.  
+
+---
+
+## 🔁 5. Bucles
+
+### **Bash – for**
+```bash
+for i in {1..5}; do
+    echo $i
+done
+```
+
+### **PHP – for**
+```php
+for ($i = 1; $i <= 5; $i++) {
+    echo $i;
+}
+```
+
+---
+
+## 🧮 6. Comparación y operadores
+
+| Concepto | Bash | PHP |
+|----------|------|------|
+| Igualdad numérica | `-eq` | `==` |
+| Igualdad de cadenas | `=` | `==` |
+| Mayor que | `-gt` | `>` |
+| Y lógico | `&&` o `-a` | `&&` |
+| O lógico | `\|\|` o `-o` | `\|\|` |
+
+---
+
+## ⛓️ 7. Manejo de cadenas de caracteres (strings)
+Incluye concatenación, uso de literales, variables, constantes y manejo de caracteres especiales como `\n`.
+
+---
+
+### 1. Cadenas literales
+
+| Lenguaje | Ejemplo | Notas |
+|---------|---------|-------|
+| **Bash** | ```bash
+'Hola mundo'
+"Hola mundo"
+``` | Comillas simples **no interpretan** variables ni `\n`. Comillas dobles **sí**. |
+| **PHP** | ```php
+'Hola mundo';
+"Hola mundo";
+``` | Igual que Bash: comillas simples **no** interpretan `\n` ni variables; comillas dobles **sí**. |
+
+---
+
+### 2. Concatenación de cadenas
+
+#### 🔹 Bash
+```bash
+a="Hola"
+b="Mundo"
+c="$a $b"
+echo "$c"
+```
+- La concatenación se hace **implícita** colocando cadenas juntas.  
+- También se puede usar `+=`:
+
+```bash
+c="Hola"
+c+=" Mundo"
+```
+
+#### 🔹 PHP
+```php
+$a = "Hola";
+$b = "Mundo";
+$c = $a . " " . $b;
+echo $c;
+```
+- Usa el operador `.` para concatenar.  
+- También existe `.=`:
+
+```php
+$c = "Hola";
+$c .= " Mundo";
+```
+
+---
+
+### 3. Variables dentro de cadenas
+
+#### Bash
+```bash
+nombre="Ana"
+echo "Hola $nombre"   # ✔ Se expande
+echo 'Hola $nombre'   # ❌ No se expande
+```
+
+#### PHP
+```php
+$nombre = "Ana";
+echo "Hola $nombre"; // ✔ Se expande
+echo "Hola " . $nombre; // ✔ Se concatena
+echo 'Hola $nombre';   // ❌ No se expande
+echo 'Hola ' . $nombre; // ✔ Se concatena
+```
+
+---
+
+### 4. Constantes
+
+#### Bash  
+
+```bash
+nombre="Ana"
+readonly PI="3.14"
+echo $PI
+echo "Hola $nombre, el valor de PI es $PI" # se expanden la variable y la constante
+```
+
+#### PHP  
+```php
+<?php
+    $nombre = "Ana";
+    define("PI", 3.14);
+    echo PI;
+    echo "Hola, $nombre, el valor de PI es " . PI; // se expande la variable, pero NO la constante, que hay que concatenarla
+    echo "Hola, " . $nombre . ", el valor de PI es " . PI; // se concatenan la variable y la constante
+?>
+```
+O usando `const`:
+```php
+<?php
+    $nombre = "Ana";
+    const PI = "3.14";
+    echo PI;
+    echo "Hola, $nombre, el valor de PI es " . PI; // se expande la variable, pero NO la constante, que hay que concatenarla
+    echo "Hola, " . $nombre . ", el valor de PI es " . PI; // se concatenan la variable y la constante
+?>
+```
+
+---
+
+### 5. Caracteres especiales (`\n`, `\t`, etc.)
+
+#### Bash
+- Con comillas dobles **sí** se interpretan:
+```bash
+echo "Linea 1
+Linea 2"
+```
+
+- Especificando saltos de línea:
+```bash
+#!/bin/bash
+nombre="Ana"
+readonly PI="3.14"
+echo $PI
+echo "Hola, $nombre, el valor de PI es $PI \n"
+```
+
+- Para que realmente funcione, suele requerir `-e` o usar `$'...'`:
+```bash
+#!/bin/bash
+echo -e "Linea 1
+Linea 2"
+echo $'Linea 1
+Linea 2'
+```
+
+#### PHP
+```php
+echo "Linea 1
+Linea 2";
+```
+- No necesita opciones adicionales.
+
+- Especificando saltos de línea:
+```php
+<?php
+    $nombre = "Ana";
+    define("PI", 3.14);
+    echo PI;
+    echo "Hola, $nombre, el valor de PI es " . PI . "\n";
+?>
+```
+
+---
+
+### 6. Ejemplos completos de concatenación con caracteres especiales
+
+#### Bash
+```bash
+saludo="Hola"
+dest="$saludo
+Mundo"
+echo -e "$dest"
+```
+
+#### PHP
+```php
+$saludo = "Hola";
+$dest = $saludo . "
+Mundo";
+echo $dest;
+```
+
+---
+
+### 7. Resumen visual
+
+| Operación | Bash | PHP |
+|-----------|------|-----|
+| Concatenación | Implícita o `+=` | `.` o `.= ` |
+| Interpretación de `\n` | `-e` o `$'...'` | Automática en comillas dobles |
+| Variables en cadenas | Sólo en comillas dobles | Sólo en comillas dobles |
+| Constantes | `readonly` | `define()` / `const` |
+| Carácter de fin de sentencia | No requiere | `;` obligatorio |
+
+---
+
+## 📦 8. Manejo de arrays
+
+### Bash
+```bash
+arr=(1 2 3)
+echo ${arr[1]}
+```
+
+### PHP
+```php
+$arr = [1, 2, 3];
+echo $arr[1];
+```
+
+---
+
+## 📝 9. Funciones
+
+### Bash
+```bash
+mi_funcion() {
+    echo "Hola"
+}
+```
+
+### PHP
+```php
+function mi_funcion() {
+    echo "Hola";
+}
+```
+
+---
+
+## 📌 Resumen visual
+
+| Aspecto | Bash | PHP |
+|--------|------|------|
+| Variables | Sin símbolo | `\$variable` |
+| Final de sentencia | Por línea | `;` obligatorio |
+| Cuerpo de bloques | `then…fi` / `do…done` | `{ … }` |
+| Arrays | Más limitados | Muy completos |
+| Enfoque | Automatización SO | Backend web |
 
 ---
 
@@ -117,7 +463,7 @@ Ejemplo:
 | Operador | Significado |
 |----------|-------------|
 | `&&` | AND lógico |
-| `||` | OR lógico |
+| `\|\|` | OR lógico |
 | `!` | Negación |
 
 Ejemplos:
@@ -192,7 +538,7 @@ Es más estricto y limitado que `[[ ]]`, pero sigue siendo fundamental para scri
 [ "$x" -eq 5 ]   # correcto
 ```
 
-##### ✔️ `<` y `>` deben escaparse
+##### ✔️ `<` y `>` deben incluir código de escape \\
 ```bash
 [ "$a" \< "$b" ]
 ```
@@ -458,7 +804,3 @@ unset 'arr[-1]'  # pop
 ```
 
 ---
-
-# 15. Conclusión
-PHP: amplio, robusto, orientado a aplicaciones.  
-Bash: simple, directo, ideal para automatización.
