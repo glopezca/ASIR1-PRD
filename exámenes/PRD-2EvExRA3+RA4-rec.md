@@ -43,23 +43,23 @@ while $natural; do
 
     if ! [[ $n =~ ^[1-9][0-9]*$ ]]; then
         natural=false
-    fi
-
-    for ((i=0; i<n; i++)); do
-        for ((j=0; j<n; j++)); do
-            if (( n % 2 == 1 && i == n/2 && j == n/2 )); then
-                echo -n "X"
-            elif (( i == j )); then
-                echo -n "\\"
-            elif (( i + j == n - 1 )); then
-                echo -n "/"
-            else
-                echo -n " "
-            fi
+    else
+        for ((i=0; i<n; i++)); do
+            for ((j=0; j<n; j++)); do
+                if (( n % 2 == 1 && i == n/2 && j == n/2 )); then
+                    echo -n "X"
+                elif (( i == j )); then
+                    echo -n "\\"
+                elif (( i + j == n - 1 )); then
+                    echo -n "/"
+                else
+                    echo -n " "
+                fi
+            done
+            echo
         done
-        echo
-    done
-    (( m++ ))
+        (( m++ ))
+    fi
 done
 
 echo "Hemos dibujado $m X"
