@@ -1,6 +1,6 @@
 # Soluciones RA3 y RA4 (ASIR)
 
-## RA3.1 – Validar número natural
+## RA3.1+RA4.1 – Validar número natural
 
 ```bash
 #!/bin/bash
