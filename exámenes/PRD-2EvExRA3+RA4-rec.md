@@ -33,27 +33,36 @@ fi
 ```bash
 #!/bin/bash
 
-read -p "Introduce tamaño n: " n
+declare i=0 j=0
+declare m=0 n=0
+declare natural=true
 
-if ! [[ $n =~ ^[1-9][0-9]*$ ]]; then
-    echo "Error: n inválido"
-    exit 1
-fi
+while $natural; do
 
-for ((i=0; i<n; i++)); do
-    for ((j=0; j<n; j++)); do
-        if (( i == j )); then
-            echo -n "\\"
-        elif (( i + j == n - 1 )); then
-            echo -n "/"
-        elif (( n % 2 == 1 && i == n/2 && j == n/2 )); then
-            echo -n "X"
-        else
-            echo -n " "
-        fi
+    read -p "Introduce tamaño n: " n
+
+    if ! [[ $n =~ ^[1-9][0-9]*$ ]]; then
+        natural=false
+    fi
+
+    for ((i=0; i<n; i++)); do
+        for ((j=0; j<n; j++)); do
+            if (( n % 2 == 1 && i == n/2 && j == n/2 )); then
+                echo -n "X"
+            elif (( i == j )); then
+                echo -n "\\"
+            elif (( i + j == n - 1 )); then
+                echo -n "/"
+            else
+                echo -n " "
+            fi
+        done
+        echo
     done
-    echo
+    (( m++ ))
 done
+
+echo "Hemos dibujado $m X"
 ```
 
 ### Diagrama de flujo
